@@ -16,3 +16,6 @@ git clone -> 처음 한번
 git commit / push : 올린다
 
 git pull : 내려받기
+
+
+vue는 ES6 문법을 안써도 되지만 react는 사용해야한다
