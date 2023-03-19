@@ -1,9 +1,39 @@
 <style scoped>
+header {
+  text-align: center;
+  height: 60px;
+}
+
 section {
+  text-align: center;
   height: 150px;
+}
+
+footer {
+  text-align: center;
+  height: 60px;
+}
+
+/* step2. 배경색 지정*/
+header {
+  background-color: #efb14e;
+}
+
+section {
   background-color: #95db5e;
-  margin: 0 5% 20px 5%;
-  margin: 40px 0px;
+}
+
+footer {
+  background-color: #78d0d1;
+}
+
+/* step3. 여백 주기 - margin , padding */
+header {
+  margin: 0 0 20px 0;
+}
+
+section {
+  margin: 40px 20px;
 }
 
 div {
@@ -12,30 +42,25 @@ div {
 </style>
 
 <template>
-  <div class="container">
-    <header-comp></header-comp>
-
+  <div>
+    <HeaderComp></HeaderComp>
     <section id="page1" data-role="page">
       <div class="content" data-role="content">컨텐츠</div>
     </section>
-
-    <footer-comp></footer-comp>
+    <FooterComp></FooterComp>
   </div>
 </template>
 
 <script>
-import Header from './HeaderComp.vue';
-import Footer from './FooterComp.vue';
-
+import HeaderComp from './HeaderComp.vue';
+import FooterComp from './FooterComp.vue';
 export default {
   data() {
-    return {
-      msg: 'Hello VueJS',
-    };
+    return {};
   },
   components: {
-    'header-comp': Header,
-    'footer-comp': Footer,
+    HeaderComp: HeaderComp,
+    FooterComp: FooterComp,
   },
 };
 </script>
