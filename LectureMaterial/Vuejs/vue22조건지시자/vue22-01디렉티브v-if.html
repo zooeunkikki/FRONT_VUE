@@ -55,7 +55,9 @@
       v-if 연습 1.
       #app1 인스턴스 data 프로퍼티(속성) awesome 에 어떤값을 설정하면 될까?
     </h2>
-    <div id="app1">
+    <div id="app1"
+      @click="awesomeClick"
+      style="border:1px solid">
       <h3 v-if="awesome">Vue is awesome!</h3>
       <h3 v-else>Oh no 😢</h3>
     </div>
@@ -64,8 +66,10 @@
       v-else 연습 2
       #app2 인스턴스 data 프로퍼티(속성) awesome 에 어떤값을 설쟁하면 될까?
     </h2>
-    <div id="app2">
-      <h3 v-if="awesome">Vue is awesome!</h3>
+    <div id="app2"
+      @click="awesomeClick2"
+      style="border:1px solid">
+      <h3 v-if="awesome2">Vue is awesome!</h3>
       <h3 v-else>Oh no 😢</h3>
     </div>
 
@@ -79,7 +83,7 @@
     </h2>
     <div id="app3">
       <button v-on:click="clickBind">클릭</button>
-      <span v-if="awesome">
+      <span v-if="awesome3">
         Now you see me
       </span>
       <div v-else>
@@ -106,3 +110,97 @@
   </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app1',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      awesome: true
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      awesomeClick() {
+        this.awesome = !this.awesome;
+      }
+    },
+
+  });
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app2',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      awesome2: false,
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      awesomeClick2() {
+        this.awesome2 = !this.awesome2;
+      }
+    },
+  });
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app3',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      awesome3: true,
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clickBind() {
+        this.awesome3 = !this.awesome3;
+      }
+    },
+
+  });
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app4',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      type: 0,
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clickBind() {
+        // 강사님이 알려주신 방법
+        // 1%4 => 1
+        // 2%4 => 2
+        // 3%4 => 3
+        // 4$4 => 0
+
+        // { this.type += 1 } % 4;
+
+        // 내가한 방법
+        console.log(this.type)
+        if (this.type >= 3) {
+          this.type = 0;
+        } else {
+          this.type++
+        }
+
+      }
+    },
+
+  });
+
+
+
+</script>

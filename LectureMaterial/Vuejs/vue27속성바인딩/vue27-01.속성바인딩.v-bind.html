@@ -47,32 +47,80 @@
     <h2>v-bind 연습 1</h2>
     <div id="app">
       <pre><b>클릭하면 id 속성 값으로 <i>1234</i> 가 설정되게 만드시오</b></pre>
-      <p id="idA">
-        <button click="clickBindId">클릭</button>
+      <p :id="idA">
+        <button @click="clickBindId">클릭</button>
         아이디 바인딩
       </p>
       <pre><b>클릭하면 class 속성 값으로 <i>container</i> 가 설정되게 만드시오</b></pre>
-      <p class="classA">
-        <button click="clickBindClass">클릭</button>
+      <p :class="classA">
+        <button @click="clickBindClass">클릭</button>
         클래스 바인딩
       </p>
       <pre><b>클릭하면 style 속성 값으로 <i>color: blue; font-size: 20pt; </i>가 설정되게 만드시오</b></pre>
-      <p style="styleA">
-        <button click="clickBindStyle">클릭</button>
+      <p :style="styleA">
+        <button @click="clickBindStyle">클릭</button>
         스타일 바인딩
       </p>
       <pre><b>클릭하면 value 속성 값으로  <i>v-bind 지시자</i>  가 나오게 만드시오</b></pre>
       <p>
-        <button click="clickBindValue">클릭</button>
-        <input id="a" type="text" value="message">
+        <button @click="clickBindValue">클릭</button>
+        <input id="a"
+          type="text"
+          :value="message">
       </p>
       <pre><b>클릭하면 src 속성 값에  <i>../images/heart.png</i>  가 나오게 만드시오</b></pre>
       <p>
-        <button click="clickBindSrc">클릭</button>
-        <img src="imagePath" />
+        <button @click="clickBindSrc">클릭</button>
+        <img :src="imagePath" />
       </p>
     </div>
 
   </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      idA: null,
+      classA: null,
+      styleA: null,
+      imagePath: null,
+      message: '',
+    },
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clickBindId(e) {
+        this.idA = '1234'
+      },
+      clickBindClass(e) {
+        this.classA = 'container'
+      },
+      clickBindStyle(e) {
+        this.styleA = {
+          color: 'blue',
+          fontSize: '20pt'
+
+        }
+      },
+      clickBindValue(e) {
+        this.message = 'v-bind 지시자'
+      },
+      clickBindSrc(e) {
+        this.imagePath = '../images/heart.png';
+      }
+
+    },
+  });
+
+</script>

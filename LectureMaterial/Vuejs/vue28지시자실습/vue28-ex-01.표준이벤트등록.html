@@ -90,17 +90,22 @@
       </xmp>
       <ul>
         <li>
-          <a class="image3" href="../images/image3.jpg" click="imageclick">
+          <a class="image3"
+            href="../images/image3.jpg"
+            @click.prevent="imageclick">
             강아지 사진
           </a>
         </li>
         <li>
-          <a class="image3" href="../images/image4.jpg" click="imageclick">
+          <a class="image3"
+            href="../images/image4.jpg"
+            @click.prevent="imageclick">
             고양이 사진
           </a>
         </li>
       </ul>
-      <img id="img2" src="img_image3" />
+      <img id="img2"
+        :src="url" />
       <hr />
 
       <xmp>
@@ -110,10 +115,14 @@
         이미지 위에 마우스를 내리면 ==> mouseout  이벤트 핸들러명 ==> imageout
 
         이미지 위에 마우스를 내리면(mouseout ) ==> ../images/but1.gif , ../images/img_swap_off.png
-        이미지 위에 마우스를 올리면(mouseover) ==> ../images/but2.gif , ../images/img_swap_on.png
+        이미지 위에 마우스를 올리면(mouseover) ==>  , ../images/img_swap_on.png
       </xmp>
-      <img src="img_but1" id="but1"     mouseover="imageover" mouseout="imageout" />
-      <img src="img_swap" id="img-swap" mouseover="imageover" mouseout="imageout" />
+      <img :src="img_but1"
+        id="but1" />
+      <img :src="img_swap"
+        id="img-swap"
+        @mouseover.prevnt="imageover"
+        @mouseout.prevnt="imageout" />
       <hr />
 
       <xmp>
@@ -128,20 +137,20 @@
           2. 문자열  yellow           ===> "yellow"
           3. 콤마    ;                ===> ,
       </xmp>
-      <span mouseover= "spanmouseover"
-            mousedown= "spanmousedown"
-            mouseup  = "spanmouseup"
-            mouseout = "spanmouseout" >
+      <span @mouseover.prevnt="spanmouseover"
+        @mousedown.prevnt="spanmousedown"
+        @mouseup.prevnt="spanmouseup"
+        @mouseout.prevnt="spanmouseout">
       </span>
-      <span mouseover= "spanmouseover"
-            mousedown= "spanmousedown"
-            mouseup  = "spanmouseup"
-            mouseout = "spanmouseout" >
+      <span @mouseover="spanmouseover"
+        @mousedown="spanmousedown"
+        @mouseup="spanmouseup"
+        @mouseout="spanmouseout">
       </span>
-      <span mouseover= "spanmouseover"
-            mousedown= "spanmousedown"
-            mouseup  = "spanmouseup"
-            mouseout = "spanmouseout">
+      <span @mouseover="spanmouseover"
+        @mousedown="spanmousedown"
+        @mouseup="spanmouseup"
+        @mouseout="spanmouseout">
       </span>
       <hr />
 
@@ -153,13 +162,19 @@
         "vue23-01.v-for와배열.html" 를 참조하여 option 부분을 v-for 를 사용하도록 수정하시오.
 
       </xmp>
-      <select id="sel" change="selectchange">
-          <option value="../images/strawberry.gif">딸기</option>
-          <option value="../images/banana.gif">바나나</option>
-          <option value="../images/apple.gif" selected>사과</option>
+      <select id="sel"
+        @change="selectchange">
+        <option v-for="(v,i) in options"
+          :key="i"
+          :value="v.value">{{v.text}}</option>
+        <!-- <option value="../images/strawberry.gif">딸기</option>
+        <option value="../images/banana.gif">바나나</option>
+        <option value="../images/apple.gif"
+          selected>사과</option> -->
       </select>
 
-      <img id="img" src="img_select" />
+      <img id="img"
+        :src="img_select" />
       <hr />
 
       <xmp>
@@ -168,7 +183,10 @@
         focus 이벤트 핸들러 ==> inputfocus. outline: 2px dotted red 설정
         blur 이벤트 핸들러 ==> inputblur. outline: none 설정
       </xmp>
-      <input type="text" id="ID" blur="inputblur" focus="inputfocus" />
+      <input type="text"
+        id="ID"
+        @blur="inputblur"
+        @focus="inputfocus" />
       <label style="margin: 0 0 0 20px;">input 태그에 테두리를 칠하는 경우에는 outline을 사용.</label>
       <hr />
 
@@ -176,3 +194,80 @@
   </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      url: '',
+      img_but1: '../images/but1.gif',
+      img_swap: '../images/img_swap_off.png',
+      style1: null,
+      options: [
+        { value: '../images/strawberry.gif', text: '딸기' },
+        { value: '../images/banana.gif', text: '바나나' },
+        { value: '../images/apple.gif', text: '사과' }
+      ],
+      img_select: '../images/strawberry.gif',
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      imageclick(e) {
+        this.url = e.target.href
+        e.stopPropagtion();
+        e.preventDefault();
+      },
+      imageover(e) {
+        // 이벤트 객체의 아이디가 달라!! 그걸로 구분 ㄱㄱ
+        e.target.src = this.img_swap;
+        const id = e.target.id;
+        if (id == 'img-swap') {
+          this.img_swap = '../images/img_swap_on.png'
+        }
+      },
+      imageout(e) {
+        e.target.src = this.img_swap;
+        // 이벤트 객체의 아이디가 달라!! 그걸로 구분 ㄱㄱ
+        const id = e.target.id;
+        if (id == 'img-swap') {
+          this.img_swap = '../images/img_swap_off.png'
+        }
+
+      },
+      spanmouseover(e) {
+        // 바인드로 넣지말고 타겟으로 style 찾아서 각자 넣기~~
+        e.target.style.backgroundColor = 'yellow';
+      },
+      spanmousedown(e) {
+        e.target.style.backgroundColor = 'blue';
+      },
+      spanmouseup(e) {
+        e.target.style.backgroundColor = 'pink';
+      },
+      spanmouseout(e) {
+        e.target.style.backgroundColor = 'red';
+      },
+      selectchange(e) {
+        this.img_select = e.target.value;
+      },
+      inputfocus(e) {
+        e.target.style.outline = '2px dotted red';
+      },
+      inputblur(e) {
+        e.target.style.outline = 'none';
+      },
+
+    },
+  });
+
+</script>

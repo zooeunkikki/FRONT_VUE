@@ -53,6 +53,13 @@
 
     <div id="app"
       class="col-md-10 offset-md-1">
+      <button v-on:click='btnAddClick'>추가</button>
+      <label for="">이름</label><input v-model:value="name"
+        placeholder="이름을 입력하세">
+      <label for="">전화번호</label><input v-model:value="tel"
+        placeholder="전화번호을 입력하세">
+      <label for="">주소</label><input v-model:value="address"
+        placeholder="주소를 입력하세">
       <table id="list"
         class="table-bordered">
         <thead>
@@ -79,3 +86,45 @@
 </html>
 
 
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      contacts: [
+        { name: 'aaa', tel: '010-0000-0000', address: 'aaa bbb ccc' },
+        { name: 'bbb', tel: '010-1111-1111', address: 'aaa bbb ccc1' },
+        { name: 'ccc', tel: '010-2222-2222', address: 'aaa bbb ccc2' },
+      ],
+      name: null,
+      tel: null,
+      address: null
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      btnAddClick() {
+        const obj = {
+          name: this.name,
+          tel: this.tel,
+          address: this.address
+        }
+        this.contacts.push(obj);
+
+        // input에 입력된값 지우기
+        this.name = null;
+        this.tel = null;
+        this.address = null;
+      }
+    },
+
+  });
+
+</script>
