@@ -5,3 +5,6 @@ return false X
 https://hj-tilblog.tistory.com/85
 
 이벤트 핸들러 -> 인자넘기기
+이벤트 객체
+
+vue 28번이 가장 중요~
