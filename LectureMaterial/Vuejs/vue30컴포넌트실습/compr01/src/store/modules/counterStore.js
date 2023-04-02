@@ -62,6 +62,7 @@ const store = {
       return state.welcome;
     },
     counter(state /* 고정 */) {
+      debugger;
       return state.counter;
     },
   },

@@ -22,8 +22,8 @@ export default {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {
       header: 'Vuex 사용 앱',
-      welcome: 'HELLO WORLD',
-      counter: 0,
+      //welcome: 'HELLO WORLD',
+      //counter: 0,
       callapi: false,
     };
   },
