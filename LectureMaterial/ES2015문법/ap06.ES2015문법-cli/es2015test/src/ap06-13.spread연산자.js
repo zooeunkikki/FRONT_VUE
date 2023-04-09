@@ -40,3 +40,29 @@ console.log(rest);
 
 const [city1, ...cityrest] = [...east, ...west];
 console.log(cityrest);
+
+// spread연산자 - 2023.04.09수업
+const morning = {
+  breacfast: '미역국',
+  lunch: '삼치구이',
+};
+
+const dinner = '스테이크';
+
+const meals = {
+  ...morning,
+  dinner: dinner,
+};
+
+console.log(meals);
+//{breacfast:'미역국',lunch:'삼치구이',dinner:'스테이크'}
+
+//props에 출력되는 값은 무엇인가?
+function chlidComponent(...props) {
+  console.log(props);
+}
+
+const message = 'passed from Parent Component';
+chlidComponent(...message);
+
+//['p', 'a', 's', 's', 'e', 'd', ' ', 'f', 'r', 'o', 'm', ' ', 'P', 'a', 'r', 'e', 'n', 't', ' ', 'C', 'o', 'm', 'p', 'o', 'n', 'e', 'n', 't']

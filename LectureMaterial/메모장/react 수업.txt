@@ -1,0 +1,109 @@
+react 프로젝트 ->
+es6 최신문법 /  babel / wempack  / ts
+
+vue에 비해서 조금 더 알아야 할게 많다.
+
+html안에 babel 을 넣어서 리액트를 사용할 수 있지만 사용성이 떨어져서 학습할때에는 좋지만
+실무에서는 사용하지 않는다. <- 적합하지 X 
+
+
+함수(변수)의 호이스팅
+
+debugger;
+console.log(aaa);
+var aaa;
+aaa = '변수의 호이스팅';
+
+console.log(bbb);
+const bbb = '변수의 호이스팅2';
+
+var msg = 'global scope';
+if (true) {
+  var msg = 'block scope';
+}
+
+
+react -> 클래스 공부는 비추천!!
+클래스 상속 -> X
+
+기억하는 방법!!
+export default => {} 없이
+export => {}있게
+
+
+css.map js.map ... map -> 문제가 발생해도 문제가 어디서 났는지 추정할 수 없다
+
+
+내가 프로젝트를 한다면?
+-> 아무것도 없다면?
+client(vue) + server(nodejs)
+
+
+네이티브앱 -> react
+web + app -> react
+
+wep(mobileApp) -> vue
+
+
+react 컴포넌트 -> 함수형 컴포넌트만 주로 사용한다
+
+
+
+hook? 함수형 컴포넌트안에서만 사용사능
+동일한 형태(순서)로만 호출해야한다.
+
++주의사항+
+연관배열 
+
+useState에 작성되면
+callback에 작성되어야한다. -> 반드시 의존배열에 기술되어야 함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,3 +33,19 @@ console.log(type1, color, model1);
 
 const { type, color, model, gear } = car;
 console.log(type, color, model, gear); // t,s,2017, undefinde
+
+// 함수의 매개변수로 분해할당을 방식을 사용해본다.
+// 함수의 매개변수에 분해할당 적용 const { type, color } = car;
+const fun2 = ({ type, color }) => {
+  // ES5
+  // const type = car.type;
+  // const color = car.color;
+
+  debugger;
+  // ES2015 ,  분해할당
+  // const { type, color } = car;
+
+  console.log(type);
+  console.log(color);
+};
+fun2(car);

@@ -66,6 +66,7 @@
       $ ls      # packages.json 파일이 있는지 확인한다.
       node_modules/  package.json  package-lock.json  public/  README.md  src/
 
+      ls ./src/ src 폴더의 파일목록 확인하기
       $ touch ./src/App.css
       $ touch ./src/App.js
       $ touch ./src/Header.js
@@ -150,6 +151,18 @@
       ==> 단축키: rfc
 
 
+      ############################
+      # step 6. 배포용 파일 만들고 github.io 에 배포하기
+      ############################
+      $ ls # packages.json 파일이 있는지 확인한다.
+      node_modules/ package.json package-lock.json public/ README.md src/
+
+      $ npm run build # build/ 에 합쳐진 파일 만들기
+
+      $ ls # build 폴더가 생성되었는지 확인한다.
+      build/ node_modules/ package.json package-lock.json public/ README.md src/
+
+      # github.io 에 빌드된 파일을 배포합니다.
     </pre>
   </body>
 </html>
