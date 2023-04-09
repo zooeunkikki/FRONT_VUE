@@ -91,8 +91,29 @@ export default {
     clearAll() {
       this.todoItems = [];
     },
-    addTodo(e) {
-      console.log(e.target);
+    addTodo(e, param) {
+      console.log(e.target, param);
+
+      const ids = this.todoItems.map((item) => {
+        // item = {id,todo,done}
+        return item.id;
+      });
+
+      const maxid = ids.reduce((pvalue, cvlaue) => {
+        if ((pvalue, cvlaue)) {
+          return pvalue;
+        } else {
+          return cvlaue;
+        }
+      });
+
+      const newTodo = {
+        id: maxid + 1,
+        todo: param,
+        done: false,
+      };
+
+      this.todoItems = [...this.todoItems, newTodo];
     },
     doneToggle(todoItem) {
       console.log(todoItem);

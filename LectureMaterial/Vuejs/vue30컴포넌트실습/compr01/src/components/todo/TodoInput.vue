@@ -179,7 +179,11 @@ li.checked {
 <template>
   <!-- TodoInput -->
   <div class="inputBox shadow">
-    <input type="text" placeholder="Type what you have to do" />
+    <input
+      type="text"
+      placeholder="Type what you have to do"
+      v-model="newTodoItem"
+    />
     <span class="addContainer" @click="addTodo">
       <i aria-hidden="true" class="addBtn fas fa-plus"></i>
     </span>
@@ -203,8 +207,11 @@ export default {
   //template: ``,
   methods: {
     addTodo(e) {
-      console.log(e.target);
-      this.$emit('addTodo', e);
+      if (this.newTodoItem && this.newTodoItem.trim()) {
+        this.$emit('addTodo', e, this.newTodoItem);
+      } else {
+        this.showModal = true;
+      }
     },
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우
@@ -235,17 +242,6 @@ export default {
   },
   watch: {
     /* 자동처리 + 비동기식. data 에 등록된 프로퍼티(변수) 모니터링. 메서드로 작성. 매개변수 필수. 외부 api 호출을 위해서 사용 */
-  },
-  created() {
-    console.log('created');
-  },
-  mounted() {
-    console.log('mounted');
-    /* store의 actions 호출 */
-    // this.$store.dispatch('액션명', payload);
-  },
-  updated() {
-    console.log('updated');
   },
 };
 </script>
