@@ -127,6 +127,9 @@
         // 마운트 완료 후에 실행됨. 한번만. focus 줄때
         // console.log('rt16-01.ref >> componentDidMount');
         refIsMounted.current = true;
+
+
+        refInputEl1.current.focus();
       }
       return () => {
         // 언마운트 직전에 한번만 실행됨.
@@ -139,17 +142,28 @@
       // state 변경
     }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */]);
 
-    // 이벤트 핸들러 작성.
-    const handler = (e) => {
-      // 이벤트 핸들러는 화살표 함수로 만든다
-      console.log(e.target);
-    };
+
+    // 부모로 부터 받느냐(props), 내가 만드느냐, ref로 받냐 3가지로 나뉨
+    const refInputEl1 = React.useRef(null);
+    const refInputEl2 = React.useRef(null);
+
+    // 마운트
+    React.useEffect(() => refInputEl1.current.focus());
+    // 이벤트 핸들러
+    const handlerClick = () => refInputEl2.current.focus();
 
     // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
     return (
       <div>
-        TextInputWithFocusButton
+        <input type="text" ref={refInputEl1} />
+        <br />
+        <button onClick={handlerClick}>Focus 2nd input</button>
+        <br />
+        <input type="text" ref={refInputEl2} />
       </div>
     );
+
+    // ref -> 유효성 검사할때 사용
+    // 입력된 값 가져올때 사용
   }
 </script>

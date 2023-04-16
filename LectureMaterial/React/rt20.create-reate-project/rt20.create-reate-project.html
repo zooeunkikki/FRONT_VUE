@@ -22,6 +22,9 @@
     </div>
 
     <xmp>
+    **React 사용가이드**
+    -> 라이브러리 버전마다 퍈차가 있어서 어려움이 있을 수 있다
+
     React CRA 을 사용하여 reactprj01 어플리케이션을 만들어 본다.
 
 
@@ -64,7 +67,7 @@
         Ok to proceed? (y) y
         ....
 
-        $ npx create-react-app reactprj01        # 프로젝트명은 소문자로 만들어야 함.
+        $ npx create-react-app reactprj01        # 프로젝트명은 소문자로 만들어야 함.(개선된 방식)
         Need to install the following packages:
           create-react-app
         Ok to proceed? (y) y
@@ -79,12 +82,12 @@
         $ ls               # package.json 파일이 보이는지 확인
 
         $ npm help
-        $ npm help install
-        $ npm install -h
+        $ npm help install      -> 사이트가 열린다
+        $ npm install -h        -> 명령어를 통해(세부명령어를 보고싶을때)
 
         $ npm help ls
         $ npm ls -h
-        $ npm ls react       # 설치된 react 버전 확인
+        $ npm ls react       # 설치된 react 버전 및 관계 확인
         ├─┬ @testing-library/react@13.4.0
         │ └── react@18.2.0 deduped
         ├─┬ react-dom@18.2.0
@@ -100,13 +103,13 @@
         모든 OS 에 동일
 
 
-    step 1-04. 프로젝트 소스 커밋
+    step 1-04. 프로젝트 소스 커밋(명령어를 통해 커밋하기)
         $ pwd           # 현재 작업하는 폴더 위치 확인
-        $ ls            # package.json 파일이 보이는지 확인
+        $ ls            # package.json 파일이 보이는지 확인(항상 있는지 확인)
         $ git status    # 파일의 추가, 변경, 삭제 확인
         $ git add -AN   # 신규 파일 추가
         $ git status    # 파일의 추가, 변경, 삭제 확인
-        $ git commit -a -m '프로젝트 시작하기'      # 파일 commit
+        $ git commit -a -m '프로젝트 시작하기'      # 파일 commit (-a : all -m : message)
         $ git push      #
 
         github 사이트에서 소스가 올라갔는지 확인한다.
@@ -130,6 +133,7 @@
         https://www.npmjs.com/package/styled-components
 
         $ npm install --save styled-components @types/styled-components
+        ->@는? TS(타입스크립트를 사용하는경우 무조건 붙여서 설치해야함)
 
 
     step 1-23. 리액트 라우터 설치(필수)
@@ -167,6 +171,7 @@
     step 1-27. immer 설치(필수)
         immer : 리덕스 store state 를 불변 객체(읽기 전용)로 처리할 때 사용되는 라이브러리
         ===> 복제 후 할당을 처리하는 라이브러리
+        문제점-> 어렵다!
 
         Create the next immutable state tree by simply modifying the current tree
         https://www.npmjs.com/package/immer
@@ -183,28 +188,31 @@
 
         $ npm install --save  @material-ui/core  @material-ui/icons  @material-ui/pickers  @material-ui/styles
 
+        -> 16버전까지만 지원하기 때문에 그 이상 버전은 지원하지 않는다
 
-    step 1-32. install Semantic UI
+    step 1-32. install Semantic UI  -> 빈도수 多
         디자인을 제공하는 라이브러리
         홈페이지 : https://react.semantic-ui.com/
 
         $ npm install --save semantic-ui-react semantic-ui-css
 
 
-    step 1-33. install Ant Design
+    step 1-33. install Ant Design   -> 빈도수 多
         홈페이지 : https://ant.design/docs/react/getting-started
 
         $ npm install --save antd
 
+        -> 피그마 디자인 베이스로 되어 있어서 앤트 디자인을 선호하는 사람이 있다. (컨셉이 맞는다)
 
-    step 1-34. install react-icons
+
+    step 1-34. install react-icons  (폰트어썸, 앤트아이콘, 구글 아이콘...등등 )
         Include popular icons in your React projects easily with react-icons,
         https://www.npmjs.com/package/react-icons
 
         $ npm install --save react-icons
 
 
-    step 1-35. install the Bootstrap 4
+    step 1-35. install the Bootstrap 4    -> 사용하지 않는다
         $ npm install --save bootstrap reactstrap
 
 
@@ -219,6 +227,9 @@
     ##################################
 
       배포용 파일을 만들고 nginx 에 배포하여 본다.
+
+      리액트에서 가장 선호하는 -> nginx
+
       "npm run build" 을 실행하면 /build/ 폴더에 배포용 파일들이 만들어진다.
 
       $ ls     # build/ 폴더가 보이는지 확인. 없으면 정상
@@ -274,17 +285,17 @@
         https://webpack.js.org/loaders/
 
         $ npm install --save-dev @babel/core @babel/cli
-        $ npm install --save-dev @babel/preset-env @babel/preset-react
+        $ npm install --save-dev @babel/preset-env @babel/preset-react   -> 프리셋
         $ npm install --save-dev babel-loader
 
-        # .babelrc 파일을 프로젝트 루트에 만들기
+        # .babelrc 파일을 프로젝트 루트에 만들기    ->package.json 있으면 프로젝트 루트
         $ pwd     # 현재 작업하는 폴더 위치 확인
         $ ls -a   # package.json 파일이 보이는지 확인
         $ touch .babelrc      # .babelrc 파일 생성
-        $ echo -e "{\n}" > .babelrc
+        $ echo -e "{\n}" > .babelrc     -> 강제로 블락 넣기
         $ cat .babelrc
 
-        # .babelrc 파일을 열고 아래 내용을 추가한다.
+        # .babelrc 파일을 열고 아래 내용을 추가한다.  -> 복사해서 사용하기
         {
             "presets": [
                 ["react-app"],
@@ -338,9 +349,10 @@
             . 들여쓰기에 tab을 쓸 것인가? space를 쓸 것인가?
             . 문자 리터럴로  ' 를 쓸 것인가? " 쓸 것인가?
 
-        Prettier 는 소스 코드를 저장할 때나
-                   git 커밋할 때
-                   정의된 규칙에 따라 코드의 형식을 자동으로 수정한다.
+        Prettier 가 적용되는 시점은
+                  · 소스 코드를 저장할 때나
+                  · git 커밋할 때
+        정의된 규칙에 따라 코드의 형식을 자동으로 수정한다.
 
         prettier : Prettier 모듈
         eslint-config-react: react 프로젝트에 맞춰진 ESLint 규칙을 추가합니다.
@@ -364,6 +376,8 @@
 
         # .prettierrc.js 파일에 아래 내용을 추가
         $ cat .prettierrc.js
+        * 대부분의 설정파일은 json파일의 형식의 {} // js형식의 module.exports = {}; *
+        * json -> 주석이 불가능하다는 점이 차이점이 있다 *
         module.exports = {
             /* https://prettier.io/docs/en/options.html */
             printWidth: 80 /* 한 줄에 80컬럼까지 허용 */,
