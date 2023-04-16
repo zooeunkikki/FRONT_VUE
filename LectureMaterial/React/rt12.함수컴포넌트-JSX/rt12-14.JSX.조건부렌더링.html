@@ -34,3 +34,77 @@
     <div id="app"></div>
   </body>
 </html>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6 ==> ES5, JSX ==> ES5  */
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.js"
+  crossorigin="anonymous">
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  // id="app" 인 태그 에 컴포넌트를 화면에 붙이시오
+  // ReactDOM.render( 인자1, 인자2 )
+  ReactDOM.render(<Greeting isLoggedIn={true} />, document.getElementById('app'));
+
+  // 단축키 rfchtml
+  function Greeting({ isLoggedIn }) {
+    // const isLoggedIn = props.isLoggedIn;
+    // const {isLoggedIn} = props;
+
+
+    //1번째 방법
+    // if (isLoggedIn) {
+    //   return <UserGreeting />;
+    // }
+    // return <GuestGreeting />;
+
+
+    //2번째 방법 - 가독성이 떨어진다는 단점이 있다.
+    // return (
+    //   <div>
+    //     <UserGreeting />
+    //     <GuestGreeting />
+    //   </div>
+    // );
+
+    // 3번째 방법 - 논리 && 연산자로 if를 인라인으로 표현하기
+    return (
+      <div>
+        {isLoggedIn && (<GuestGreeting />)}
+        {!isLoggedIn && (<UserGreeting />)}
+      </div>
+    );
+    // else if를 사용하지 않아도 되는 장점이 있다.
+    // 삼향 연산자 (?)는 사용하지 않는다. -> 가독성 떨어짐
+
+  }
+
+  function GuestGreeting({ ...props }) {
+    return (
+      <div>
+        GuestGreeting
+      </div>
+    );
+  }
+
+  function UserGreeting({ ...props }) {
+    return (
+      <div>
+        UserGreeting
+      </div>
+    );
+  }
+</script>
